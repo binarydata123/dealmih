@@ -10,11 +10,13 @@ class Setting extends Model
      use HasFactory;
      protected $table='settings';  
      protected $fillable = [
-        'admin_link', 'developer_link', 'favicon', 'site_logo', 'facebook_link', 'twitter_link', 'instagram_link', 'youtube_link', 'tiktok_link','contact_no','address'
+        'admin_link', 'developer_link', 'favicon', 'site_logo', 
+        'facebook_link', 'twitter_link', 'instagram_link', 
+        'youtube_link', 'tiktok_link','contact_no','address'
      ];
 
-     public function getSettingData(){
-        $setting_data = Setting::where('id', '1')->first();
-        return $setting_data;
-    }
+     // Make this method static
+     public static function getSettingData(){
+        return self::where('id', '1')->first();
+     }
 }

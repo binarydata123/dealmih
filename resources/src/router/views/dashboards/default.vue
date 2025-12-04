@@ -101,7 +101,7 @@ export default {
           date: "05 Oct, 2019",
           total: "$412",
           status: "Paid",
-          payment: ["fa-cc-mastercard", "Mastercard"],
+          payment: ["fa-cc-mastercard", "Mastercard"],Dashboard
           index: 4,
         },
         {

@@ -4,7 +4,7 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="csrf-token" content="{{ csrf_token() }}" />
-      <?php 
+   <?php 
 	$uri = $_SERVER['REQUEST_URI'];
 	if($uri=='/' || $uri=='/index.php'){ 
 		?>
@@ -65,18 +65,18 @@ $uri = $_SERVER['REQUEST_URI'];
 	}
 	?>
 	<meta name="google-site-verification" content="InKbq-eaJdFVhm5vQY7h6wLZMSUtCbTMekjszZEIXKs" />
-      <link rel="stylesheet" href="{{asset('website/fonts/flaticon/flaticon.css')}}">
-      <link rel="stylesheet" href="{{asset('website/fonts/font-awesome/fontawesome.css')}}">
-      <link rel="stylesheet" href="{{asset('website/css/vendor/slick.min.css')}}">
-      <link rel="stylesheet" href="{{asset('website/css/vendor/bootstrap.min.css')}}">
-      <link rel="stylesheet" href="{{asset('website/css/custom/main.css')}}">
-      <link rel="stylesheet" href="{{asset('website/css/custom/index.css')}}">
-      <link rel="stylesheet" href="{{asset('website/css/custom/user-form.css')}}">
-      <link rel="stylesheet" href="{{asset('website/css/custom/dashboard.css')}}">
-      <link rel="stylesheet" href="{{asset('website/css/custom/ad-details.css')}}">
-      <link rel="stylesheet" href="{{asset('website/css/custom/blog-details.css')}}">
-      <link rel="stylesheet" href="{{asset('website/css/vendor/emojionearea.min.css')}}">
-      <link rel="stylesheet" href="{{asset('website/css/custom/rangeSlider.css')}}">
+      <link rel="stylesheet" href="http://127.0.0.1:8000/website/fonts/flaticon/flaticon.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/website/fonts/font-awesome/fontawesome.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/website/css/vendor/slick.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/website/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/website/css/custom/main.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/website/css/custom/index.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/website/css/custom/user-form.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/website/css/custom/dashboard.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/website/css/custom/ad-details.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/website/css/custom/blog-details.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/website/css/vendor/emojionearea.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/website/css/custom/rangeSlider.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="{{asset('website/css/notifications/Lobibox.min.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">
@@ -872,7 +872,14 @@ p.pop-text {
    </div>
 
     @include('website.layout.footer')
-
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+        .register('/serviceworker.js')
+        .then(() => console.log("Service Worker Registered"))
+        .catch(err => console.log("SW Registration Failed", err));
+}
+</script>
     {{-- login popup  --}}
 
     <div class="modal fade" id="help">

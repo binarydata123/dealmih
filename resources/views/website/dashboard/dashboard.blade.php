@@ -24,11 +24,20 @@ ul#catsubmne {
 }
 </style>
 @php
-$header_category = App\Models\HeaderCategory::getheadercategory();
-$category = App\Models\Product::getcat(Auth::user()->id);
-$msg = App\Models\Product::Msgcount(Auth::user()->id);
-$msg_count = App\Models\Product::MessagesCount(Auth::user()->id);
-$notifications = App\Models\UserNotification::notication(Auth::user()->id);
+$header_category = (new App\Models\HeaderCategory)->getheadercategory();
+$category        = (new App\Models\Product)->getcat(Auth::user()->id);
+
+// Temporary fix for the GROUP BY error - use a simpler query
+$msg_count = \DB::table('chats')
+    ->where('sender_id', Auth::user()->id)
+    ->orWhere('receiver_id', Auth::user()->id)
+    ->distinct('product_id')
+    ->count('product_id');
+
+// If you still need $msg variable, use the same fix or remove if not used
+$msg = $msg_count; // or use the same query if different logic
+
+$notifications   = (new App\Models\UserNotification)->notication(Auth::user()->id);
 @endphp
 
 <div class="col-lg-3 hidden-x">

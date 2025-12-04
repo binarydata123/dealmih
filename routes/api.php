@@ -19,7 +19,7 @@ use Illuminate\Support\Str;
 //     return $request->user();
 // });
 Route::post('/media', 'Admin\CategoryController@media');
-Route::get('/dashboard', 'Admin\DashBoardController@index');
+// Route::get('/dashboard', 'Admin\DashBoardController@index');
 Route::get('/transaction', 'Admin\DashBoardController@transaction');
 
 

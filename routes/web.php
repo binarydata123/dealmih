@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use phpseclib3\Crypt\Common\Formats\Signature\Raw;
+use App\Http\Controllers\Website\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,9 @@ use phpseclib3\Crypt\Common\Formats\Signature\Raw;
 |
 */
 
-if (App::environment('local')) {
-    URL::forceScheme('https');
-}
+// if (App::environment('local')) {
+//     URL::forceScheme('https');
+// }
 
 Artisan::call('view:clear');
 Artisan::call('route:clear');
@@ -228,13 +229,23 @@ Route::group(['domain' => $DOMAIN], function () {
         Route::post('/cms/edit/{id}', 'Admin\DashBoardController@cmsTemplateUpdate');
 
 
-    Route::group(['prefix' => 'dashboard/{any}'], function () {
+    // Route::group(['prefix' => 'dashboard/{any}'], function () {
 
-        Route::get("/", function () {
-            return view('home');
-        })->where('any', '.*');
-    });
-    
+    //     Route::get("/", function () {
+    //         return view('website.home');
+    //     })->where('any', '.*');
+    // });
+
+//     Route::group(['prefix' => 'dashboard'], function () {
+//     Route::get('/{any?}', [HomeController::class, 'index'])
+//         ->where('any', '.*')
+//         ->name('website.home');
+// });
+    Route::group(['prefix' => 'dashboard'], function () {
+    Route::get('/{any?}', function () {
+        return view('layouts.app'); // YEH IMPORTANT HAI
+    })->where('any', '.*');
+});
        });
     // website 
     // Route::get("/{any}", function()

@@ -12,6 +12,7 @@
     <title>
         @yield('title', config('app.name', 'Dealmih'))
     </title>
+    
     <meta content="classifids admin" />
 	<meta name="google-site-verification" content="InKbq-eaJdFVhm5vQY7h6wLZMSUtCbTMekjszZEIXKs" />
     <script src="{{ asset('js/app.js') }}" defer></script>

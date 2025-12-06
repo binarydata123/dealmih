@@ -35,6 +35,8 @@ class LogData extends Exception
       $log->save(); 
       // return \Redirect::back()->with('error', 'Something Went Wrong.');
     }
+
+
 }
 
 

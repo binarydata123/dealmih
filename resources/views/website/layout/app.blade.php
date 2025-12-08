@@ -81,6 +81,10 @@ $uri = $_SERVER['REQUEST_URI'];
       <link rel="stylesheet" href="{{asset('website/css/notifications/Lobibox.min.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" media="all" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0d6efd">
 <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HCCBS00QJK"></script>
     <script>
@@ -871,12 +875,51 @@ p.pop-text {
       </div>
    </div>
 
-    @include('website.layout.footer')
+<div id="installPrompt" class="d-none"
+     style="position:fixed;bottom:20px;right:20px;width:400px;z-index:9999;">
+  
+  <div style="background:white;padding:15px;border-radius:8px;box-shadow:0 4px 10px rgba(0,0,0,0.2);position:relative;">
+
+
+    <!-- Header: Icon + Title -->
+    <div class="d-flex align-items-center gap-5 mb-2">
+        <div style="font-size:24px;color:#0d6efd; margin-right:5px">
+            <i class="bi bi-arrow-down-circle-fill"></i>
+        </div>
+
+        <h5 class="m-0">Install Dealmih App</h5>
+    </div>
+
+    <!-- Description -->
+    <p style="font-size:12px;color:#555;margin-bottom:10px;">
+      Install this app for a better and faster experience.
+    </p>
+
+    <!-- Buttons -->
+   <div class="d-flex justify-content-around w-100">
+    <button id="installBtn"
+        style="width:60%;padding:6px 8px;background:#0d6efd;color:white;border:none;border-radius:5px;font-size:13px;display:flex;align-items:center;justify-content:center;gap:6px;">
+        <i class="bi bi-download"></i> Install
+    </button>
+
+    <button id="dismissBtn"
+        style="width:35%;padding:6px 8px;background:#888;color:white;border:none;border-radius:5px;font-size:13px;">
+        Not Now
+    </button>
+</div>
+
+  </div>
+</div>
+
+
+
+@include('website.layout.footer')
+<script src="{{ asset('website/js/PWA/pwa.js') }}"></script>
 <script>
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker
-        .register('/serviceworker.js')
-        .then(() => console.log("Service Worker Registered"))
+        .register('/service-worker.js')
+        .then(() => console.log("Service Worker Registered "))
         .catch(err => console.log("SW Registration Failed", err));
 }
 </script>
@@ -935,6 +978,3 @@ if ('serviceWorker' in navigator) {
 
                            
                        </script>
-
-
-   
